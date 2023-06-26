@@ -35,6 +35,8 @@ resource "aws_security_group" "instance" {
   name = "${var.cluster_name}-instance"
 }
 
+#security group rules outside of the security groups give more flexibility
+
 resource "aws_security_group_rule" "allow_server_http_inbound" {
   type              = "ingress"
   security_group_id = aws_security_group.instance.id
