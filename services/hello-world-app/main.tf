@@ -4,7 +4,7 @@ provider "aws" {
 
 module "asg" {
   //source = "../../cluster/asg-rolling-deploy"
-    source = "github.com/KazikKluz/terrabook-modules//cluster/asg-rolling-deploy?ref=v0.0.10"
+    source = "github.com/KazikKluz/terrabook-modules//cluster/asg-rolling-deploy?ref=v0.0.11"
 
   cluster_name = "hello-world-${var.environment}"
   ami = var.ami
@@ -12,8 +12,8 @@ module "asg" {
 
   user_data = templatefile("${path.module}/user-data.sh",{
     server_port = var.server_port
-    db_address = local.mysql_config.db_address 
-    db_port = local.mysql_config.db_port
+    db_address = local.mysql_config.address 
+    db_port = local.mysql_config.port
     server_text = var.server_text
   })
 
@@ -30,7 +30,7 @@ module "asg" {
 
 module "alb" {
   //source = "../../../modules/networking/alb"
-  source = "github.com/KazikKluz/terrabook-modules//networking/alb?ref=v0.0.10"
+  source = "github.com/KazikKluz/terrabook-modules//networking/alb?ref=v0.0.11"
 
   alb_name = "hello-world-${var.environment}"
   subnet_ids = local.subnet_ids
