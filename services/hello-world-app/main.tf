@@ -4,7 +4,7 @@ provider "aws" {
 
 module "asg" {
   //source = "../../cluster/asg-rolling-deploy"
-    source = "github.com/KazikKluz/terrabook-modules//cluster/asg-rolling-deploy?ref=v0.0.9"
+    source = "github.com/KazikKluz/terrabook-modules//cluster/asg-rolling-deploy?ref=v0.0.10"
 
   cluster_name = "hello-world-${var.environment}"
   ami = var.ami
@@ -29,7 +29,8 @@ module "asg" {
 }
 
 module "alb" {
-  source = "../../../modules/networking/alb"
+  //source = "../../../modules/networking/alb"
+  source = "github.com/KazikKluz/terrabook-modules//networking/alb?ref=v0.0.10"
 
   alb_name = "hello-world-${var.environment}"
   subnet_ids = local.subnet_ids
