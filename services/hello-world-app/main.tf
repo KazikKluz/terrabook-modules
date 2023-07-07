@@ -3,7 +3,8 @@ provider "aws" {
 }
 
 module "asg" {
-  source = "../../cluster/asg-rolling-deploy"
+  //source = "../../cluster/asg-rolling-deploy"
+    source = "github.com/KazikKluz/terrabook-modules//cluster/asg-rolling-deploy?ref=v0.0.9"
 
   cluster_name = "hello-world-${var.environment}"
   ami = var.ami
